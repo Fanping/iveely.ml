@@ -20,7 +20,7 @@ package com.iveely.ml.application;
 
 import com.iveely.ml.common.FeatureData;
 import com.iveely.ml.common.IActiveFunction;
-import com.iveely.ml.model.Perception;
+import com.iveely.ml.model.perception.PerceptionImp;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -44,8 +44,8 @@ public class LinearEquation {
     // All equations.
     private List<FeatureData> equations;
 
-    // Perception model.
-    private Perception perception;
+    // perceptionImp model.
+    private PerceptionImp perceptionImp;
 
     public LinearEquation(final int variableNumber) {
         assert (variableNumber > 0);
@@ -54,7 +54,7 @@ public class LinearEquation {
             this.defaultValues[i] = new Double(0.1);
         }
         this.equations = new LinkedList<>();
-        this.perception = new Perception(0.0001, defaultValues,
+        this.perceptionImp = new PerceptionImp(0.0001, defaultValues,
                 new Y_Equal_X(),
                 100000 * (int) Math.pow(3.0, variableNumber * 1.0),
                 false);
@@ -90,15 +90,15 @@ public class LinearEquation {
     }
 
     public void practice() {
-        this.perception.Train(this.equations);
+        this.perceptionImp.Train(this.equations);
     }
 
     public Double[] getVariables() {
         assert (equations.size() == defaultValues.length);
-        return this.perception.getWeights();
+        return this.perceptionImp.getWeights();
     }
 
     public Double predict(final Double[] euqationLeft) {
-        return this.perception.predict(euqationLeft);
+        return this.perceptionImp.predict(euqationLeft);
     }
 }

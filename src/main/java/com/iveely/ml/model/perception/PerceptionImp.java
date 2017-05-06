@@ -15,7 +15,7 @@
 * limitations under the License.
 */
 
-package com.iveely.ml.model;
+package com.iveely.ml.model.perception;
 
 import com.iveely.ml.common.FeatureData;
 import com.iveely.ml.common.IActiveFunction;
@@ -26,7 +26,7 @@ import java.util.List;
  * Description: y = f(w1*x1+w2*x2+...+wn*xn+offset)
  * Author:liufanping@iveely.com
  **/
-public class Perception {
+public class PerceptionImp {
 
     // Study Rate.
     private Double η;
@@ -45,11 +45,11 @@ public class Perception {
 
     private boolean useOffset;
 
-    public Perception(final Double η,
-                      final Double[] defaultWeight,
-                      final IActiveFunction activeFunction,
-                      final int iterationCnt,
-                      final boolean useOffset) {
+    public PerceptionImp(final Double η,
+                         final Double[] defaultWeight,
+                         final IActiveFunction activeFunction,
+                         final int iterationCnt,
+                         final boolean useOffset) {
         this.η = η;
         this.weights = defaultWeight;
         this.activeFunction = activeFunction;
