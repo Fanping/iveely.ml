@@ -21,6 +21,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
@@ -37,8 +38,8 @@ public class Test_LinearEquation {
         linearEquation.practice();
         Double[] ret = linearEquation.getVariables();
         // Error ratio less than 0.1
-        assertTrue(Math.abs(ret[0] - 1.0) < 0.1);
-        assertTrue(Math.abs(ret[1] - 1.0) < 0.1);
+        assertEquals(1.0, ret[0], 0.1);
+        assertEquals(1.0, ret[1], 0.1);
     }
 
     @Test
@@ -51,8 +52,9 @@ public class Test_LinearEquation {
         linearEquation.practice();
         Double[] ret = linearEquation.getVariables();
         // Error ratio less than 0.1
-        assertTrue(Math.abs(ret[0] - 1.0) < 0.1);
-        assertTrue(Math.abs(ret[1] - 1.0) < 0.1);
-        assertTrue(Math.abs(ret[2] - 1.0) < 0.1);
+        assertEquals(1.0, ret[0], 0.1);
+        assertEquals(1.0, ret[1], 0.1);
+        assertEquals(1.0, ret[2], 0.1);
+
     }
 }

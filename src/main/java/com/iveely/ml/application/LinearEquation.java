@@ -55,7 +55,9 @@ public class LinearEquation {
         }
         this.equations = new LinkedList<>();
         this.perception = new Perception(0.0001, defaultValues,
-                new Y_Equal_X(), 100000 * (int) Math.pow(3.0, variableNumber * 1.0));
+                new Y_Equal_X(),
+                100000 * (int) Math.pow(3.0, variableNumber * 1.0),
+                false);
     }
 
     public void addEquation(final Double[] euqationLeft, Double euqationRight) {

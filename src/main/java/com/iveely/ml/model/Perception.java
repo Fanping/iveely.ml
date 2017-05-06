@@ -31,7 +31,6 @@ public class Perception {
     // Study Rate.
     private Double η;
 
-
     // Weight for each feature.
     private Double[] weights;
 
@@ -41,14 +40,22 @@ public class Perception {
     // Active function.
     private IActiveFunction activeFunction;
 
+    // Offset, bias factor.
+    private double b;
+
+    private boolean useOffset;
+
     public Perception(final Double η,
                       final Double[] defaultWeight,
                       final IActiveFunction activeFunction,
-                      final int iterationCnt) {
+                      final int iterationCnt,
+                      final boolean useOffset) {
         this.η = η;
         this.weights = defaultWeight;
         this.activeFunction = activeFunction;
         this.iterationCnt = iterationCnt;
+        this.b = 0;
+        this.useOffset = useOffset;
     }
 
     private int isUniformity(final FeatureData<Double, Double> featureData) {
@@ -57,6 +64,9 @@ public class Perception {
             y += featureData.getFeatures()[i] * this.weights[i];
         }
         double val = y - featureData.getExpect();
+        if (useOffset) {
+            val += b;
+        }
         if (Math.abs(val) < this.η * 10) {
             return 0;
         } else if (val < 0) {
@@ -69,6 +79,9 @@ public class Perception {
     private void adjustWeight(final FeatureData<Double, Double> featureData, int direction) {
         for (int i = 0; i < featureData.getFeaturesLength(); i++) {
             this.weights[i] += direction * this.η * featureData.getFeatures()[i] * featureData.getExpect();
+        }
+        if (useOffset) {
+            this.b += this.η * direction;
         }
     }
 
@@ -97,6 +110,9 @@ public class Perception {
         Double sum = 0.0;
         for (int i = 0; i < feature.length; i++) {
             sum += this.weights[i] * feature[i];
+        }
+        if (useOffset) {
+            sum += b;
         }
         return activeFunction.calculate(sum);
     }

@@ -28,6 +28,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * Test for perception
  * Author:liufanping@iveely.com
@@ -38,23 +40,24 @@ public class Test_Perception {
 
         @Override
         public double calculate(double value) {
-            return value >= 0 ? 1 : 0;
+            return value >= 0.5 ? 1 : 0;
         }
     }
 
     @Test
     public void testPerception() {
         // Simulation for 'XOR'
-        Double[] w = {0.001, 0.001, 0.001};
-        Perception p = new Perception(0.001, w, new AndActiveFunction(), 10000);
+        Double[] w = {0.001, 0.001};
+        Perception p = new Perception(0.001, w, new AndActiveFunction(), 100000, true);
         List<FeatureData> featureDataList = new LinkedList<>();
         featureDataList.add(new FeatureData<>(new Double[]{1.0, 0.0}, 0.0));
         featureDataList.add(new FeatureData<>(new Double[]{1.0, 1.0}, 1.0));
         featureDataList.add(new FeatureData<>(new Double[]{0.0, 0.0}, 0.0));
         featureDataList.add(new FeatureData<>(new Double[]{0.0, 1.0}, 0.0));
         p.Train(featureDataList);
-        System.out.println(Arrays.toString(p.getWeights()));
-        System.out.println(p.predict(new Double[]{0.0, 0.0}));
+        assertEquals(1.0, p.predict(new Double[]{1.0, 1.0}), 0.001);
+        assertEquals(0.0, p.predict(new Double[]{0.0, 1.0}), 0.001);
+        assertEquals(0.0, p.predict(new Double[]{1.0, 0.0}), 0.001);
+        assertEquals(0.0, p.predict(new Double[]{0.0, 0.0}), 0.001);
     }
-
 }
