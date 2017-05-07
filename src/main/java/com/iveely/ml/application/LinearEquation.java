@@ -20,7 +20,7 @@ package com.iveely.ml.application;
 
 import com.iveely.ml.common.FeatureData;
 import com.iveely.ml.common.IActiveFunction;
-import com.iveely.ml.model.perception.PerceptionImp;
+import com.iveely.ml.model.NeuralNetwork.perception.PerceptionImp;
 
 import java.util.LinkedList;
 import java.util.List;

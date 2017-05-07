@@ -15,7 +15,7 @@
 * limitations under the License.
 */
 
-package com.iveely.ml.model.perception;
+package com.iveely.ml.model.NeuralNetwork.perception;
 
 import com.iveely.ml.common.FeatureData;
 import com.iveely.ml.common.IActiveFunction;
