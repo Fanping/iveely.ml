@@ -14,9 +14,9 @@ It's easy as follw:
      bp.train(trainData, 10000 * 4);
              
      assertEquals(bp.predict(new FeatureData<>(
-               new Double[]{0.0}, new Double[]{2.0, 6.0}))[0], 1.0, 0.01);
+               new Double[]{0.0}, new Double[]{2.0, 6.0}))[0], 1.0, 0.1);
      assertEquals(bp.predict(new FeatureData<>(
-               new Double[]{0.0}, new Double[]{6.0, 2.0}))[0], 0.0, 0.01);
+               new Double[]{0.0}, new Double[]{6.0, 2.0}))[0], 0.0, 0.1);
      assertEquals(bp.predict(new FeatureData<>(
-               new Double[]{0.0}, new Double[]{8.0, 2.0}))[0], 0.0, 0.01);
+               new Double[]{0.0}, new Double[]{8.0, 2.0}))[0], 0.0, 0.1);
 ```
