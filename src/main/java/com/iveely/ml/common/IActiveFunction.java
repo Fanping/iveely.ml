@@ -23,6 +23,6 @@ package com.iveely.ml.common;
 public interface IActiveFunction {
 
     // function body.
-    public double calculate(double value);
+    double calculate(double value);
 
 }

@@ -17,6 +17,8 @@
 
 package com.iveely.ml.model.kmeans;
 
+import java.util.Arrays;
+
 /**
  * Implementation of universal Kmeans clustering algorithm.
  *
@@ -57,19 +59,21 @@ public class KmeansImp<T> {
 
         // 2. Training.
         int maxIterCnt = this.iterCnt;
-        while (maxIterCnt-- > 0) {
-
+        while (maxIterCnt-- > -1) {
             // 2.1 Find the nearest center point.
             for (Point<T> point : points) {
+                if (isCenterPoint(point)) {
+                    continue;
+                }
                 double minDistance = Double.MAX_VALUE;
-                int centerId = point.getCentorId();
+                int clusterId = point.getClusterId();
                 for (CenterPoint center : centers) {
                     double distance = this.compare.getDistance(point, center.getPoint());
                     if (minDistance > distance) {
                         minDistance = distance;
-                        if (centerId != center.getPoint().getCentorId()) {
-                            centers[centerId].remove(point);
-                            point.setCentorId(center.getPoint().getCentorId());
+                        if (clusterId != center.getPoint().getClusterId()) {
+                            centers[clusterId].remove(point);
+                            point.setClusterId(center.getPoint().getClusterId());
                             center.add(point);
                         }
                     }
@@ -81,9 +85,11 @@ public class KmeansImp<T> {
             for (CenterPoint center : centers) {
                 double minDistance = Double.MAX_VALUE;
                 Point<T> newCenter = null;
-                for (Point<T> a : center.getCluster()) {
+                for (Object obj_1 : center.getCluster()) {
+                    Point<T> a = (Point<T>) obj_1;
                     double distance = 0.0;
-                    for (Point<T> b : center.getCluster()) {
+                    for (Object obj_2 : center.getCluster()) {
+                        Point<T> b = (Point<T>) obj_2;
                         distance += this.compare.getDistance(a, b);
                     }
                     if (minDistance > distance) {
@@ -91,7 +97,7 @@ public class KmeansImp<T> {
                         newCenter = a;
                     }
                 }
-                if (center.equals(newCenter)) {
+                if (!center.getPoint().equals(newCenter)) {
                     center.updatePoint(newCenter);
                     isCenterChanged = true;
                 }
@@ -109,11 +115,15 @@ public class KmeansImp<T> {
     private void initCenter() {
         for (int i = 0; i < cluserSize; i++) {
             centers[i] = new CenterPoint<T>(points[i]);
-            points[i].setCentorId(i);
+            points[i].setClusterId(i);
         }
         for (int i = 0; i < this.points.length; i++) {
-            points[i].setCentorId(i % this.cluserSize);
-            centers[i].add(this.points[i]);
+            points[i].setClusterId(i % this.cluserSize);
+            centers[i % this.cluserSize].add(this.points[i]);
         }
+    }
+
+    private boolean isCenterPoint(final Point<T> point) {
+        return Arrays.stream(centers).anyMatch(center -> center.getPoint().equals(point));
     }
 }

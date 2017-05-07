@@ -342,12 +342,12 @@ public class ChartUtils {
     }
 
     public static boolean isPercent(String str) {
-        return str != null ? str.endsWith("%") && isNumber(str.substring(0, str.length() - 1)) : false;
+        return str != null && (str.endsWith("%") && isNumber(str.substring(0, str.length() - 1)));
     }
 
 
     public static boolean isNumber(String str) {
-        return str != null ? str.matches("^[-+]?(([0-9]+)((([.]{0})([0-9]*))|(([.]{1})([0-9]+))))$") : false;
+        return str != null && str.matches("^[-+]?(([0-9]+)((([.]{0})([0-9]*))|(([.]{1})([0-9]+))))$");
     }
 
 }

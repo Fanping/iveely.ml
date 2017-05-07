@@ -17,6 +17,8 @@
 
 package com.iveely.ml.model.kmeans;
 
+import java.util.Arrays;
+
 /**
  * Multidimensional data points.
  *
@@ -26,22 +28,27 @@ public class Point<T> {
 
     private T[] eles;
 
-    private int centorId;
+    private int clusterId;
 
     public Point(final T... eles) {
         this.eles = eles;
-        this.centorId = -1;
+        this.clusterId = -1;
     }
 
     public T[] getEles() {
         return eles;
     }
 
-    public int getCentorId() {
-        return centorId;
+    public int getClusterId() {
+        return clusterId;
     }
 
-    public void setCentorId(final int centorId) {
-        this.centorId = centorId;
+    public void setClusterId(final int clusterId) {
+        this.clusterId = clusterId;
+    }
+
+    @Override
+    public String toString() {
+        return "Center Id:" + clusterId + "," + Arrays.toString(eles);
     }
 }

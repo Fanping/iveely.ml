@@ -24,6 +24,6 @@ package com.iveely.ml.model.kmeans;
  **/
 public interface IPointCompare<T> {
 
-    public double getDistance(final Point<T> a, final Point<T> b);
+    double getDistance(final Point<T> a, final Point<T> b);
 
 }

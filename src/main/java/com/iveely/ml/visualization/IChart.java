@@ -8,8 +8,8 @@ import org.jfree.data.category.CategoryDataset;
  */
 public interface IChart {
 
-    public ChartPanel createChart(final String title,
-                                  final CategoryDataset dataset,
-                                  final String xlabel,
-                                  final String ylable);
+    ChartPanel createChart(final String title,
+                           final CategoryDataset dataset,
+                           final String xlabel,
+                           final String ylable);
 }
