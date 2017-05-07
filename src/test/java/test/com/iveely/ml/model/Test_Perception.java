@@ -19,7 +19,7 @@ package test.com.iveely.ml.model;
 
 import com.iveely.ml.common.FeatureData;
 import com.iveely.ml.common.IActiveFunction;
-import com.iveely.ml.model.NeuralNetwork.perception.PerceptionImp;
+import com.iveely.ml.model.neuralnetwork.perception.PerceptionImp;
 
 import org.junit.Test;
 

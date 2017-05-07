@@ -26,7 +26,7 @@ public class FeatureData<T, V> {
 
     private final V expect;
 
-    public FeatureData(final T[] features, final V expect) {
+    public FeatureData(final V expect, final T... features) {
         this.features = features;
         this.expect = expect;
     }
