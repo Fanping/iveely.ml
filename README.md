@@ -27,6 +27,6 @@ Of course you can, by sending me an [email](mailto:liufanping@iveely.com) or thr
 But the book is not perfect, I will consider writing a better one later.
 <br/>
 <br/>
-Enjoy it, I am your friend Fanping Liu.
+***Enjoy it, I am your friend Fanping Liu.***
 
 
