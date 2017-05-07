@@ -86,7 +86,7 @@ public class LinearEquation {
         assert (euqationLeft.length == defaultValues.length);
 
         // 2. Parse equations to extract variables.
-        this.equations.add(new FeatureData<>(euqationLeft, euqationRight));
+        this.equations.add(new FeatureData<>(euqationRight, euqationLeft));
     }
 
     public void practice() {
